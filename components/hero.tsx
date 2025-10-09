@@ -125,7 +125,7 @@ export function Hero() {
       </motion.div>
 
       <motion.div
-        className="relative z-10 container mx-auto px-4 text-center"
+        className="relative z-10 container mx-auto px-4 text-center pb-20 md:pb-12"
         style={{ opacity, willChange: "opacity" }}
       >
         <motion.div
@@ -171,7 +171,7 @@ export function Hero() {
 
           {/* Stats HUD */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-8 pb-12 md:pb-0"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
