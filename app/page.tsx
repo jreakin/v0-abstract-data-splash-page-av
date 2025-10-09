@@ -11,6 +11,8 @@ import { TheFuture } from "@/components/the-future"
 import { TechStack } from "@/components/tech-stack"
 import { Footer } from "@/components/footer"
 
+export const runtime = 'edge'
+
 export default function Home() {
   return (
     <main className="min-h-screen">
