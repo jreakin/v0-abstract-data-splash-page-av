@@ -1,6 +1,6 @@
 # Deploying to Cloudflare Pages
 
-This project is configured to deploy to Cloudflare Pages using static export.
+This project is configured to deploy to Cloudflare Pages using the `@cloudflare/next-on-pages` adapter for full Next.js support.
 
 ## Prerequisites
 
@@ -25,31 +25,31 @@ This project is configured to deploy to Cloudflare Pages using static export.
    npm install
    \`\`\`
 
-2. Build the project:
+2. Build the project with @cloudflare/next-on-pages:
    \`\`\`bash
-   npm run build
+   npm run pages:build
    \`\`\`
 
 3. Deploy to Cloudflare Pages:
    \`\`\`bash
-   npx wrangler pages deploy out --project-name=abstract-data-splash
+   npm run deploy
    \`\`\`
 
 ### Option 3: Deploy via Cloudflare Dashboard
 
 1. Build the project locally:
    \`\`\`bash
-   npm run build
+   npm run pages:build
    \`\`\`
 
 2. Go to the Cloudflare Dashboard > Pages
 3. Create a new project
-4. Upload the `out` directory
+4. Upload the `.vercel/output/static` directory
 
 ## Build Configuration
 
-- **Build command**: `npm run build`
-- **Build output directory**: `out`
+- **Build command**: `npm run pages:build`
+- **Build output directory**: `.vercel/output/static`
 - **Node version**: 20.x
 
 ## Environment Variables
