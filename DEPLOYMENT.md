@@ -1,6 +1,6 @@
 # Deploying to Cloudflare Pages
 
-This project is configured to deploy to Cloudflare Pages using the `@cloudflare/next-on-pages` adapter for full Next.js support.
+This project is configured to deploy to Cloudflare Pages using the `@cloudflare/next-on-pages` adapter with Edge Runtime support.
 
 ## Prerequisites
 
@@ -54,7 +54,7 @@ This project is configured to deploy to Cloudflare Pages using the `@cloudflare/
 
 ## Environment Variables
 
-No environment variables are required for this static site.
+No environment variables are required for this project. All pages are configured with Edge Runtime for optimal performance on Cloudflare Pages.
 
 ## Custom Domain
 

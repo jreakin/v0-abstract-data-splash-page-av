@@ -7,8 +7,6 @@ import "./globals.css"
 import { Suspense } from "react"
 import { Orbitron } from "next/font/google"
 
-export const runtime = 'edge'
-
 const orbitron = Orbitron({
   subsets: ["latin"],
   variable: "--font-orbitron",
