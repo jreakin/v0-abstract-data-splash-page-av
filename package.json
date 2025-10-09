@@ -6,9 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start",
-    "pages:build": "npx @cloudflare/next-on-pages@1",
-    "deploy": "wrangler pages deploy .vercel/output/static"
+    "start": "next start"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",

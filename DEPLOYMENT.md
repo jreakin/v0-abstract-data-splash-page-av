@@ -1,6 +1,6 @@
 # Deploying to Cloudflare Pages
 
-This project is configured to deploy to Cloudflare Pages using the `@cloudflare/next-on-pages` adapter with Edge Runtime support.
+This project is configured as a static Next.js site that deploys to Cloudflare Pages.
 
 ## Prerequisites
 
@@ -25,36 +25,36 @@ This project is configured to deploy to Cloudflare Pages using the `@cloudflare/
    npm install
    \`\`\`
 
-2. Build the project with @cloudflare/next-on-pages:
+2. Build the static site:
    \`\`\`bash
-   npm run pages:build
+   npm run build
    \`\`\`
 
 3. Deploy to Cloudflare Pages:
    \`\`\`bash
-   npm run deploy
+   wrangler pages deploy out
    \`\`\`
 
 ### Option 3: Deploy via Cloudflare Dashboard
 
 1. Build the project locally:
    \`\`\`bash
-   npm run pages:build
+   npm run build
    \`\`\`
 
 2. Go to the Cloudflare Dashboard > Pages
 3. Create a new project
-4. Upload the `.vercel/output/static` directory
+4. Upload the `out` directory
 
 ## Build Configuration
 
-- **Build command**: `npm run pages:build`
-- **Build output directory**: `.vercel/output/static`
+- **Build command**: `npm run build`
+- **Build output directory**: `out`
 - **Node version**: 20.x
 
 ## Environment Variables
 
-No environment variables are required for this project. All pages are configured with Edge Runtime for optimal performance on Cloudflare Pages.
+No environment variables are required for this static site.
 
 ## Custom Domain
 
