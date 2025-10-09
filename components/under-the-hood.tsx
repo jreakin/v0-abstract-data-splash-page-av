@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion"
 import { Code2, Sparkles, Target, Workflow } from "lucide-react"
+import { CodeRain } from "@/components/code-rain"
+import { GlitchEffect } from "@/components/glitch-effect"
+import { DoubleClickTooltip } from "@/components/double-click-tooltip"
 
 export function UnderTheHood() {
   const technicalDetails = [
@@ -37,6 +40,8 @@ export function UnderTheHood() {
 
   return (
     <section className="relative py-32 bg-gradient-to-b from-[#1a1a1a] via-[#0a0a0a] to-[#1a1a1a] overflow-hidden">
+      <CodeRain />
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           className="text-center mb-20"
@@ -45,12 +50,14 @@ export function UnderTheHood() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2
-            className="text-5xl md:text-6xl font-bold mb-6 text-[#00d9ff] text-glow-cyan"
-            style={{ fontFamily: "var(--font-orbitron)" }}
-          >
-            UNDER THE HOOD
-          </h2>
+          <GlitchEffect>
+            <h2
+              className="text-5xl md:text-6xl font-bold mb-6 text-[#00d9ff] text-glow-cyan"
+              style={{ fontFamily: "var(--font-orbitron)" }}
+            >
+              UNDER THE HOOD
+            </h2>
+          </GlitchEffect>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             The algorithmic sophistication and engineering excellence that powers everything we build.
           </p>
@@ -85,7 +92,13 @@ export function UnderTheHood() {
                   <detail.icon className="w-8 h-8 text-[#d4af37]" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-[#d4af37]" style={{ fontFamily: "var(--font-orbitron)" }}>
-                  {detail.title}
+                  {detail.title === "Production-Grade Code" ? (
+                    <DoubleClickTooltip tooltip="Production-Grade: (adj) Code that doesn't break when users look at it funny">
+                      {detail.title}
+                    </DoubleClickTooltip>
+                  ) : (
+                    detail.title
+                  )}
                 </h3>
                 <p className="text-gray-400 leading-relaxed mb-6">{detail.description}</p>
                 <div className="flex flex-wrap gap-2">

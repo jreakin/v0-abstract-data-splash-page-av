@@ -145,22 +145,32 @@ export function Contact() {
               />
             </div>
 
-            <Button
-              type="submit"
-              className="w-full bg-gradient-to-r from-[#00d9ff] to-[#d4af37] hover:from-[#d4af37] hover:to-[#00d9ff] text-black font-bold py-6 rounded-lg glow-cyan group relative overflow-hidden transition-all duration-300"
-              style={{ fontFamily: "var(--font-orbitron)" }}
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                TRANSMIT MESSAGE
-                <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-              <motion.div
-                className="absolute inset-0 bg-white/20"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.5 }}
-              />
-            </Button>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button
+                type="submit"
+                className="w-full bg-gradient-to-r from-[#00d9ff] to-[#d4af37] hover:from-[#d4af37] hover:to-[#00d9ff] text-black font-bold py-6 rounded-lg glow-cyan group relative overflow-hidden transition-all duration-300"
+                style={{ fontFamily: "var(--font-orbitron)" }}
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  TRANSMIT MESSAGE
+                  <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:rotate-12 transition-transform" />
+                </span>
+                {/* Shimmer effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "200%" }}
+                  transition={{ duration: 0.6 }}
+                />
+                {/* Pulse effect */}
+                <motion.div
+                  className="absolute inset-0 bg-white/10 rounded-lg"
+                  initial={{ scale: 1, opacity: 0 }}
+                  whileHover={{ scale: 1.05, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </Button>
+            </motion.div>
           </form>
 
           {/* Corner accents */}

@@ -2,6 +2,36 @@
 
 import { motion } from "framer-motion"
 import { Check, X } from "lucide-react"
+import { useState } from "react"
+import { ParallaxDepth } from "@/components/parallax-depth"
+
+function GlitchedText({ text }: { text: string }) {
+  const [isGlitched, setIsGlitched] = useState(true)
+
+  const handleFix = () => {
+    setIsGlitched(false)
+  }
+
+  return (
+    <span
+      onClick={handleFix}
+      onMouseEnter={handleFix}
+      className={`${isGlitched ? "cursor-pointer animate-glitch-text" : ""} inline-block transition-all duration-300`}
+      style={
+        isGlitched
+          ? {
+              textShadow:
+                "2px 0 #ff00de, -2px 0 #00ffff, 0 0 10px rgba(255, 0, 222, 0.5), 0 0 20px rgba(0, 255, 255, 0.5)",
+              animation: "glitch-skew 0.3s infinite",
+            }
+          : {}
+      }
+      title={isGlitched ? "Hover or click to fix rendering error" : ""}
+    >
+      {text}
+    </span>
+  )
+}
 
 export function CompetitionComparison() {
   const comparisons = [
@@ -34,6 +64,7 @@ export function CompetitionComparison() {
       category: "Technology Stack",
       them: "Excel wizards pretending to be engineers",
       us: "Next-gen platforms (Swift, AR/MR, AI/ML)",
+      isEasterEgg: true,
     },
     {
       category: "Cloud Infrastructure",
@@ -61,6 +92,9 @@ export function CompetitionComparison() {
     <section className="relative py-32 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#1A1A1A] to-[#0A0A0A]" />
+
+      <ParallaxDepth variant="minimal" intensity={1.2} />
+
       <div className="absolute inset-0 opacity-20">
         <div
           className="absolute inset-0"
@@ -108,15 +142,31 @@ export function CompetitionComparison() {
           >
             <div className="text-gray-500 font-semibold text-sm uppercase tracking-wider">Metric</div>
             <div className="text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-red-950/30 border border-red-900/50">
-                <X className="w-4 h-4 text-red-500" />
-                <span className="text-red-400 font-semibold">Traditional Solutions</span>
+              <div className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 rounded-lg bg-red-950/30 border border-red-900/50">
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <X className="w-3 h-3 sm:w-4 sm:h-4 text-red-500 flex-shrink-0" />
+                </motion.div>
+                <span className="text-red-400 font-semibold text-xs sm:text-sm whitespace-nowrap">
+                  Traditional Solutions
+                </span>
               </div>
             </div>
             <div className="text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-950/30 border border-cyan-500/50 shadow-[0_0_20px_rgba(0,217,255,0.3)]">
-                <Check className="w-4 h-4 text-cyan-400" />
-                <span className="text-cyan-400 font-semibold">Abstract Data</span>
+              <div className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 rounded-lg bg-cyan-950/30 border border-cyan-500/50 shadow-[0_0_20px_rgba(0,217,255,0.3)]">
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3, type: "spring" }}
+                >
+                  <Check className="w-3 h-3 sm:w-4 sm:h-4 text-cyan-400 flex-shrink-0" />
+                </motion.div>
+                <span className="text-cyan-400 font-semibold text-xs sm:text-sm whitespace-nowrap">Abstract Data</span>
               </div>
             </div>
           </motion.div>
@@ -129,7 +179,7 @@ export function CompetitionComparison() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="grid grid-cols-3 gap-4 mb-3"
+              className="grid grid-cols-3 gap-4 mb-3 group"
             >
               {/* Category */}
               <div className="flex items-center">
@@ -141,19 +191,39 @@ export function CompetitionComparison() {
 
               {/* Them */}
               <div className="flex items-center justify-center">
-                <div className="w-full px-4 py-3 rounded-lg bg-red-950/20 border border-red-900/30 backdrop-blur-sm">
-                  <p className="text-red-300/80 text-sm text-center">{item.them}</p>
-                </div>
+                <motion.div
+                  whileHover={{ scale: 0.98 }}
+                  className="w-full px-4 py-3 rounded-lg bg-red-950/20 border border-red-900/30 backdrop-blur-sm group-hover:glitch-text"
+                >
+                  <p className="text-red-300/80 text-sm text-center">
+                    {item.isEasterEgg ? <GlitchedText text={item.them} /> : item.them}
+                  </p>
+                </motion.div>
               </div>
 
               {/* Us */}
               <div className="flex items-center justify-center">
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="w-full px-4 py-3 rounded-lg bg-cyan-950/20 border border-cyan-500/50 backdrop-blur-sm relative overflow-hidden group"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  className="w-full px-4 py-3 rounded-lg bg-cyan-950/20 border border-cyan-500/50 backdrop-blur-sm relative overflow-hidden group/card"
                 >
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/10 to-cyan-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/30 to-cyan-500/0"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "100%" }}
+                    transition={{ duration: 0.6 }}
+                  />
+                  <motion.div
+                    className="absolute inset-0 border-2 border-cyan-400/0 rounded-lg"
+                    animate={{
+                      borderColor: ["rgba(34, 211, 238, 0)", "rgba(34, 211, 238, 0.5)", "rgba(34, 211, 238, 0)"],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                    }}
+                  />
                   <p className="text-cyan-300 text-sm font-semibold text-center relative z-10">{item.us}</p>
                 </motion.div>
               </div>

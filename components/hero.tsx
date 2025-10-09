@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useEffect, useState } from "react"
+import { AnimatedGrid } from "./animated-grid"
 
 function Counter({ end, suffix = "" }: { end: number; suffix?: string }) {
   const [count, setCount] = useState(0)
@@ -51,6 +52,8 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]">
+      <AnimatedGrid />
+
       <motion.div className="absolute inset-0 opacity-30" style={{ y: y1, willChange: "transform" }}>
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>

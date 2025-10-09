@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Brain, Zap, Shield, Activity } from "lucide-react"
+import { TextDecode } from "@/components/text-decode"
 
 export function SelfMaintainingSystems() {
   const features = [
@@ -99,7 +100,7 @@ export function SelfMaintainingSystems() {
 
           <h2 className="text-5xl md:text-6xl font-bold mb-6 font-['Orbitron']">
             <span className="bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] bg-clip-text text-transparent">
-              Systems That Maintain Themselves
+              <TextDecode text="Systems That Maintain Themselves" />
             </span>
           </h2>
 

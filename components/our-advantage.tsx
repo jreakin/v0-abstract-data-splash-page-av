@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { TrendingUp, Target, Cpu, Award } from "lucide-react"
+import { EnergyField } from "./energy-field"
 
 const advantages = [
   {
@@ -55,6 +56,9 @@ export function OurAdvantage() {
           />
         ))}
       </div>
+
+      {/* Energy field effect */}
+      <EnergyField />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div

@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 import { Code2, Database, Smartphone, Cpu, Layers, Glasses, Brain } from "lucide-react"
+import Image from "next/image"
+import { CodeRain } from "./code-rain"
 
 const technologies = [
   {
@@ -10,6 +12,7 @@ const technologies = [
     color: "#61dafb",
     description:
       "Building lightning-fast, server-rendered applications with cutting-edge React Server Components and streaming SSR for unmatched performance.",
+    image: "/images/frontend-engineering.jpg",
   },
   {
     name: "TypeScript",
@@ -17,6 +20,7 @@ const technologies = [
     color: "#3178c6",
     description:
       "Type-safe architecture at scale. Eliminating runtime errors before they happen with advanced type systems and compile-time guarantees. The foundation of our top 5% code quality and self-healing systems.",
+    image: "/images/backend-architecture.jpg",
   },
   {
     name: "Python",
@@ -24,6 +28,7 @@ const technologies = [
     color: "#3776ab",
     description:
       "High-performance data processing pipelines. Processing millions of records with intelligent algorithms, fuzzy matching, and automated quality control. Powering our 5M+ records per hour throughput.",
+    image: "/images/database-design.jpg",
   },
   {
     name: "AI & Machine Learning",
@@ -31,6 +36,7 @@ const technologies = [
     color: "#ff6b6b",
     description:
       "PyTorch, TensorFlow, and LLM integration for intelligent data processing. Fuzzy matching algorithms, automated validation, and pattern recognition that operates at superhuman accuracy. Powers our AI-driven self-diagnostics and 96.3% match rates.",
+    image: "/images/ai-ml-integration.jpg",
   },
   {
     name: "PostgreSQL",
@@ -38,6 +44,7 @@ const technologies = [
     color: "#336791",
     description:
       "Enterprise-grade data architecture. Complex queries, ACID compliance, and massive-scale data operations with sub-second response times.",
+    image: "/images/cloud-infrastructure.jpg",
   },
   {
     name: "Swift & SwiftUI",
@@ -45,6 +52,7 @@ const technologies = [
     color: "#f05138",
     description:
       "Native iOS development for Vision Pro and iPhone. Building next-generation spatial computing experiences with native performance. We're already building for 2030's platforms.",
+    image: "/images/mobile-development.jpg",
   },
   {
     name: "AR/Mixed Reality",
@@ -52,6 +60,7 @@ const technologies = [
     color: "#00d9ff",
     description:
       "Spatial computing and immersive interfaces. ARKit, RealityKit, and Vision Pro development for the future of human-computer interaction. Building for interfaces that don't exist yet—because they will.",
+    image: "/images/devops-automation.jpg",
   },
 ]
 
@@ -94,6 +103,8 @@ export function TechStack() {
         </svg>
       </div>
 
+      <CodeRain />
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className="text-5xl md:text-6xl font-bold text-center mb-8 text-glow-cyan"
@@ -124,30 +135,32 @@ export function TechStack() {
             return (
               <motion.div
                 key={index}
-                className="glass-morph p-8 rounded-xl relative overflow-hidden group cursor-pointer"
+                className="relative overflow-hidden group cursor-pointer rounded-xl"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02, y: -5 }}
+                whileHover={{ scale: 1.05, y: -8 }}
               >
-                {/* Glowing border on hover */}
-                <div className="absolute inset-0 glow-cyan opacity-0 group-hover:opacity-100 transition-opacity rounded-xl" />
+                <div className="absolute inset-0">
+                  <Image
+                    src={tech.image || "/placeholder.svg"}
+                    alt={tech.name}
+                    fill
+                    className="object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500"
+                  />
+                  {/* Dark overlay for text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black/90" />
+                </div>
 
-                {/* Animated background gradient */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-[#00d9ff]/10 to-[#d4af37]/10 rounded-xl"
-                  animate={{
-                    background: [
-                      "linear-gradient(135deg, rgba(0,217,255,0.1) 0%, rgba(212,175,55,0.1) 100%)",
-                      "linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(0,217,255,0.1) 100%)",
-                      "linear-gradient(135deg, rgba(0,217,255,0.1) 0%, rgba(212,175,55,0.1) 100%)",
-                    ],
+                <div
+                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    boxShadow: `inset 0 0 20px ${tech.color}40, 0 0 20px ${tech.color}40`,
                   }}
-                  transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
                 />
 
-                <div className="relative z-10 space-y-4">
+                <div className="relative z-10 p-8 space-y-4">
                   {/* Icon with hexagonal background */}
                   <div className="relative w-16 h-16">
                     <div className="absolute inset-0 hexagon-bg opacity-20" style={{ backgroundColor: tech.color }} />
@@ -165,13 +178,13 @@ export function TechStack() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-400 leading-relaxed text-sm">{tech.description}</p>
+                  <p className="text-gray-300 leading-relaxed text-sm">{tech.description}</p>
                 </div>
 
                 {/* Connection nodes */}
-                <div className="absolute top-4 right-4 w-2 h-2 bg-[#00d9ff] rounded-full animate-glow-pulse" />
+                <div className="absolute top-4 right-4 w-2 h-2 bg-[#00d9ff] rounded-full animate-glow-pulse z-20" />
                 <div
-                  className="absolute bottom-4 left-4 w-2 h-2 bg-[#d4af37] rounded-full animate-glow-pulse"
+                  className="absolute bottom-4 left-4 w-2 h-2 bg-[#d4af37] rounded-full animate-glow-pulse z-20"
                   style={{ animationDelay: "1s" }}
                 />
               </motion.div>

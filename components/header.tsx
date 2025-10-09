@@ -32,13 +32,24 @@ export function Header() {
             ABSTRACT DATA
           </span>
         </Link>
-        <Button
-          asChild
-          className="bg-gradient-to-r from-[#8b2635] to-[#d4af37] hover:from-[#d4af37] hover:to-[#8b2635] text-white font-bold px-6 py-2 rounded-lg glow-gold transition-all duration-300"
-          style={{ fontFamily: "var(--font-orbitron)" }}
-        >
-          <Link href="#contact">CONTACT</Link>
-        </Button>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Button
+            asChild
+            className="bg-gradient-to-r from-[#8b2635] to-[#d4af37] hover:from-[#d4af37] hover:to-[#8b2635] text-white font-bold px-6 py-2 rounded-lg glow-gold transition-all duration-300 relative overflow-hidden group"
+            style={{ fontFamily: "var(--font-orbitron)" }}
+          >
+            <Link href="#contact" className="relative z-10">
+              CONTACT
+              {/* Shimmer effect on hover */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "200%" }}
+                transition={{ duration: 0.6 }}
+              />
+            </Link>
+          </Button>
+        </motion.div>
       </div>
     </motion.header>
   )

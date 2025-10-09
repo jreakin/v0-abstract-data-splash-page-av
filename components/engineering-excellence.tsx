@@ -2,6 +2,10 @@
 
 import { motion } from "framer-motion"
 import { Code2, Shield, Zap, Award } from "lucide-react"
+import { InteractiveParticles } from "@/components/interactive-particles"
+import { GlitchEffect } from "@/components/glitch-effect"
+import { DoubleClickTooltip } from "@/components/double-click-tooltip"
+import { ParallaxDepth } from "@/components/parallax-depth"
 
 export function EngineeringExcellence() {
   const qualities = [
@@ -36,6 +40,10 @@ export function EngineeringExcellence() {
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#1A1A1A] to-[#0A0A0A]" />
 
+      <ParallaxDepth variant="circuit" intensity={1} />
+
+      <InteractiveParticles />
+
       {/* Animated grid */}
       <div className="absolute inset-0 opacity-20">
         <div
@@ -69,11 +77,15 @@ export function EngineeringExcellence() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6 font-orbitron">
-            <span className="bg-gradient-to-r from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] text-transparent bg-clip-text">
-              Real Engineering.
-            </span>
+            <DoubleClickTooltip tooltip="Real Engineering: (noun) What happens when you actually know what you're doing">
+              <span className="bg-gradient-to-r from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] text-transparent bg-clip-text">
+                Real Engineering.
+              </span>
+            </DoubleClickTooltip>
             <br />
-            <span className="text-white">Not White-Labeled Garbage.</span>
+            <GlitchEffect>
+              <span className="text-white">Not White-Labeled Garbage.</span>
+            </GlitchEffect>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             While other GOP "engineers" rebrand vendor software and slap their logo on it, we're building

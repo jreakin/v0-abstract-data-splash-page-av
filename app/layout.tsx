@@ -1,9 +1,20 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
-import "./globals.css"
-import { Orbitron } from "next/font/google"
+import { Inter, JetBrains_Mono, Orbitron } from "next/font/google"
+import "./globals.css" // Import globals.css at the top of the file
+import { ClientLayout } from "@/components/client-layout"
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+})
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -44,8 +55,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth dark">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${orbitron.variable} antialiased`}>
-        {children}
+      <body className={`font-sans ${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased`}>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   )

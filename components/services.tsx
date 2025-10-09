@@ -2,6 +2,8 @@
 
 import { Code2, Database, Brain, Zap, Shield, Gauge, Smartphone, Glasses } from "lucide-react"
 import { motion } from "framer-motion"
+import { TextDecode } from "@/components/text-decode"
+import { ParallaxDepth } from "@/components/parallax-depth"
 
 const services = [
   {
@@ -10,6 +12,9 @@ const services = [
     description: "Enterprise-grade systems built for scale and performance",
     details: "Bespoke solutions engineered to your exact specifications",
     gradient: "from-[#d4af37] to-[#ffd700]",
+    tiltX: 5,
+    tiltY: 5,
+    glowColor: "#d4af37",
   },
   {
     icon: Database,
@@ -17,6 +22,9 @@ const services = [
     description: "Advanced pipelines processing millions of records at 5M+ per hour",
     details: "Intelligent architectures with 96.3% accuracy and 98.5% automation",
     gradient: "from-[#00d9ff] to-[#00f0ff]",
+    tiltX: -5,
+    tiltY: 5,
+    glowColor: "#00d9ff",
   },
   {
     icon: Smartphone,
@@ -24,6 +32,9 @@ const services = [
     description: "Native performance for next-generation mobile platforms",
     details: "Building for 2030's devices with Vision Pro and spatial computing",
     gradient: "from-[#d4af37] to-[#00d9ff]",
+    tiltX: 5,
+    tiltY: -5,
+    glowColor: "#00d9ff",
   },
   {
     icon: Glasses,
@@ -31,6 +42,9 @@ const services = [
     description: "Spatial computing and immersive interface development",
     details: "Future-proof solutions for Vision Pro and emerging platforms",
     gradient: "from-[#00d9ff] to-[#8b2635]",
+    tiltX: -5,
+    tiltY: -5,
+    glowColor: "#8b2635",
   },
   {
     icon: Brain,
@@ -38,6 +52,9 @@ const services = [
     description: "Sophisticated automation reducing manual work by 98.5%",
     details: "Machine learning systems with self-healing capabilities and 26.6x ROI",
     gradient: "from-[#8b2635] to-[#d4af37]",
+    tiltX: 8,
+    tiltY: 3,
+    glowColor: "#d4af37",
   },
   {
     icon: Zap,
@@ -45,6 +62,9 @@ const services = [
     description: "10-50x faster than traditional approaches",
     details: "Process 5M records per hour with 100M+ record capacity",
     gradient: "from-[#ffd700] to-[#00d9ff]",
+    tiltX: -8,
+    tiltY: 3,
+    glowColor: "#ffd700",
   },
   {
     icon: Shield,
@@ -52,6 +72,9 @@ const services = [
     description: "Multi-stage validation with 78% test coverage ensuring data integrity",
     details: "Automated quality control with AI-powered anomaly detection",
     gradient: "from-[#00d9ff] to-[#8b2635]",
+    tiltX: 3,
+    tiltY: 8,
+    glowColor: "#00d9ff",
   },
   {
     icon: Gauge,
@@ -59,12 +82,17 @@ const services = [
     description: "53% cost reduction through iterative optimization",
     details: "Self-maintaining systems that get better and more efficient over time",
     gradient: "from-[#d4af37] to-[#8b2635]",
+    tiltX: -3,
+    tiltY: 8,
+    glowColor: "#8b2635",
   },
 ]
 
 export function Services() {
   return (
     <section className="py-32 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] relative overflow-hidden">
+      <ParallaxDepth variant="geometric" intensity={0.8} />
+
       <div className="absolute inset-0 opacity-10">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -91,33 +119,41 @@ export function Services() {
           transition={{ duration: 0.8 }}
         >
           <span className="bg-gradient-to-r from-[#d4af37] via-[#ffd700] to-[#d4af37] bg-clip-text text-transparent">
-            CAPABILITIES
+            <TextDecode text="CAPABILITIES" />
           </span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto overflow-visible">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="glass-morph p-8 rounded-lg relative overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer"
+              className="glass-morph p-8 rounded-lg relative group hover:scale-105 transition-all duration-300 cursor-pointer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              style={{ willChange: "transform" }}
+              whileHover={{
+                y: -10,
+                rotateX: service.tiltY,
+                rotateY: service.tiltX,
+                scale: 1.02,
+              }}
+              style={{
+                willChange: "transform",
+                perspective: 1000,
+                overflow: "visible", // Allow glow to extend beyond card bounds
+              }}
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-20 transition-opacity rounded-lg`}
-              />
-              <div
-                className={`absolute inset-0 border-2 border-transparent bg-gradient-to-r ${service.gradient} rounded-lg opacity-30 group-hover:opacity-60 transition-opacity`}
+                className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity rounded-lg blur-2xl"
                 style={{
-                  WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                  WebkitMaskComposite: "xor",
-                  maskComposite: "exclude",
-                  padding: "2px",
+                  background: `radial-gradient(circle at center, ${service.glowColor}, transparent)`,
+                  transform: "scale(1.2)", // Extend glow beyond card
                 }}
+              />
+
+              <div
+                className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-20 transition-opacity rounded-lg`}
               />
 
               {/* Holographic shimmer on hover */}
@@ -158,7 +194,7 @@ export function Services() {
                 </div>
 
                 <h3
-                  className="text-xl font-bold text-white mb-3 text-center tracking-wider"
+                  className="text-lg sm:text-xl font-bold text-white mb-3 text-center tracking-wider px-2"
                   style={{ fontFamily: "var(--font-orbitron)" }}
                 >
                   {service.title}

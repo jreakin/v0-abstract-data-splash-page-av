@@ -10,11 +10,17 @@ import { SelfMaintainingSystems } from "@/components/self-maintaining-systems"
 import { TheFuture } from "@/components/the-future"
 import { TechStack } from "@/components/tech-stack"
 import { Footer } from "@/components/footer"
-import { HudNavigation } from "@/components/hud-navigation" // Added HUD navigation import
+import { HudNavigation } from "@/components/hud-navigation"
+import { CustomCursor } from "@/components/custom-cursor"
+import { HexagonalOverlay } from "@/components/hexagonal-overlay"
+import { ScanlineEffect } from "@/components/scanline-effect"
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <CustomCursor />
+      <HexagonalOverlay />
+      <ScanlineEffect />
       <HudNavigation />
 
       <div id="hero">

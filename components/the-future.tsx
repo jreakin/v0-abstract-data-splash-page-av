@@ -3,6 +3,8 @@
 import { motion } from "framer-motion"
 import { Cpu, Zap, Globe, Brain } from "lucide-react"
 import { DataStreamBackground } from "./data-stream-background"
+import { TextDecode } from "@/components/text-decode"
+import { AnimatedGrid } from "./animated-grid"
 
 export function TheFuture() {
   const futureCapabilities = [
@@ -34,6 +36,8 @@ export function TheFuture() {
 
   return (
     <section className="relative py-32 bg-gradient-to-b from-[#0a0a0a] via-[#1a1a1a] to-[#0a0a0a] overflow-hidden">
+      <AnimatedGrid />
+
       <DataStreamBackground />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -48,7 +52,7 @@ export function TheFuture() {
             className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#d4af37] via-[#00d9ff] to-[#d4af37] bg-clip-text text-transparent text-glow-gold"
             style={{ fontFamily: "var(--font-orbitron)" }}
           >
-            BUILT FOR 2030
+            <TextDecode text="BUILT FOR 2030" />
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             We're not solving today's problems. We're building tomorrow's solutions—on platforms that don't even exist

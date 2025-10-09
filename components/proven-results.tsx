@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { CheckCircle2 } from "lucide-react"
+import { EnergyField } from "./energy-field"
 
 const achievements = [
   {
@@ -36,9 +37,50 @@ const achievements = [
   },
 ]
 
+const scanAnimations = [
+  {
+    // Box 0: Left to right, electric blue
+    gradient: "bg-gradient-to-r from-[#00d9ff]/0 via-[#00d9ff]/20 to-[#00d9ff]/0",
+    animate: { x: ["-100%", "100%"] },
+    duration: 3,
+  },
+  {
+    // Box 1: Right to left, gold
+    gradient: "bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/20 to-[#d4af37]/0",
+    animate: { x: ["100%", "-100%"] },
+    duration: 3.5,
+  },
+  {
+    // Box 2: Top to bottom, electric blue
+    gradient: "bg-gradient-to-b from-[#00d9ff]/0 via-[#00d9ff]/20 to-[#00d9ff]/0",
+    animate: { y: ["-100%", "100%"] },
+    duration: 2.8,
+  },
+  {
+    // Box 3: Bottom to top, gold
+    gradient: "bg-gradient-to-b from-[#d4af37]/0 via-[#d4af37]/20 to-[#d4af37]/0",
+    animate: { y: ["100%", "-100%"] },
+    duration: 3.2,
+  },
+  {
+    // Box 4: Left to right, purple-blue mix
+    gradient: "bg-gradient-to-r from-[#8b5cf6]/0 via-[#00d9ff]/20 to-[#8b5cf6]/0",
+    animate: { x: ["-100%", "100%"] },
+    duration: 2.5,
+  },
+  {
+    // Box 5: Right to left, electric blue
+    gradient: "bg-gradient-to-r from-[#00d9ff]/0 via-[#00d9ff]/25 to-[#00d9ff]/0",
+    animate: { x: ["100%", "-100%"] },
+    duration: 3.8,
+  },
+]
+
 export function ProvenResults() {
   return (
     <section className="py-32 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] relative overflow-hidden">
+      <EnergyField />
+
       {/* Circuit board background */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -89,14 +131,11 @@ export function ProvenResults() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ scale: 1.02 }}
             >
-              {/* Animated glow effect */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#00d9ff]/0 via-[#00d9ff]/20 to-[#00d9ff]/0 rounded-lg"
-                animate={{
-                  x: ["-100%", "100%"],
-                }}
+                className={`absolute inset-0 ${scanAnimations[index].gradient} rounded-lg`}
+                animate={scanAnimations[index].animate}
                 transition={{
-                  duration: 3,
+                  duration: scanAnimations[index].duration,
                   repeat: Number.POSITIVE_INFINITY,
                   ease: "linear",
                 }}
