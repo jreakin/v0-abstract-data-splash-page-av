@@ -83,11 +83,11 @@ export function Services() {
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
-          className="text-5xl md:text-6xl font-bold text-center mb-20 text-glow-gold"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-20 text-glow-gold px-4"
           style={{ fontFamily: "var(--font-orbitron)" }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
           <span className="bg-gradient-to-r from-[#d4af37] via-[#ffd700] to-[#d4af37] bg-clip-text text-transparent">
@@ -95,16 +95,17 @@ export function Services() {
           </span>
         </motion.h2>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {services.map((service, index) => (
             <motion.div
               key={index}
               className="glass-morph p-8 rounded-lg relative overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -10 }}
+              style={{ willChange: "transform" }}
             >
               <div
                 className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-20 transition-opacity rounded-lg`}

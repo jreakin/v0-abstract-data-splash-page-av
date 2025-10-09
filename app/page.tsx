@@ -6,25 +6,50 @@ import { ProvenResults } from "@/components/proven-results"
 import { CompetitionComparison } from "@/components/competition-comparison"
 import { UnderTheHood } from "@/components/under-the-hood"
 import { ArchitectureDiagram } from "@/components/architecture-diagram"
-import { SelfMaintainingSystems } from "@/components/self-maintaining-systems" // Added self-maintaining systems import
+import { SelfMaintainingSystems } from "@/components/self-maintaining-systems"
 import { TheFuture } from "@/components/the-future"
 import { TechStack } from "@/components/tech-stack"
 import { Footer } from "@/components/footer"
+import { HudNavigation } from "@/components/hud-navigation" // Added HUD navigation import
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Hero />
-      <Services />
-      <EngineeringExcellence />
-      <OurAdvantage />
-      <ProvenResults />
-      <CompetitionComparison />
-      <UnderTheHood />
-      <ArchitectureDiagram />
-      <SelfMaintainingSystems /> {/* Added self-maintaining systems section after architecture */}
-      <TheFuture />
-      <TechStack />
+      <HudNavigation />
+
+      <div id="hero">
+        <Hero />
+      </div>
+      <div id="services">
+        <Services />
+      </div>
+      <div id="engineering">
+        <EngineeringExcellence />
+      </div>
+      <div id="advantage">
+        <OurAdvantage />
+      </div>
+      <div id="results">
+        <ProvenResults />
+      </div>
+      <div id="competition">
+        <CompetitionComparison />
+      </div>
+      <div id="under-hood">
+        <UnderTheHood />
+      </div>
+      <div id="architecture">
+        <ArchitectureDiagram />
+      </div>
+      <div id="self-maintaining">
+        <SelfMaintainingSystems />
+      </div>
+      <div id="future">
+        <TheFuture />
+      </div>
+      <div id="tech-stack">
+        <TechStack />
+      </div>
       <Footer />
     </main>
   )

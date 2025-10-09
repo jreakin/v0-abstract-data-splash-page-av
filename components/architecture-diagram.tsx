@@ -43,12 +43,12 @@ export function ArchitectureDiagram() {
           viewport={{ once: true }}
         >
           <h2
-            className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#d4af37] to-[#00d9ff] bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-[#d4af37] to-[#00d9ff] bg-clip-text text-transparent px-4"
             style={{ fontFamily: "var(--font-orbitron)" }}
           >
             SYSTEM ARCHITECTURE
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto px-4">
             Enterprise-grade, multi-tier architecture designed for scale, performance, and reliability.
           </p>
         </motion.div>

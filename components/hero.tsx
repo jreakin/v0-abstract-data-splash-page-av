@@ -36,13 +36,22 @@ function Counter({ end, suffix = "" }: { end: number; suffix?: string }) {
 
 export function Hero() {
   const { scrollY } = useScroll()
-  const y1 = useTransform(scrollY, [0, 500], [0, 150])
-  const y2 = useTransform(scrollY, [0, 500], [0, -100])
-  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
+  const y1 = useTransform(scrollY, [0, 500], [0, isMobile ? 0 : 150])
+  const y2 = useTransform(scrollY, [0, 500], [0, isMobile ? 0 : -100])
+  const opacity = useTransform(scrollY, [0, 300], [1, isMobile ? 1 : 0])
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]">
-      <motion.div className="absolute inset-0 opacity-30" style={{ y: y1 }}>
+      <motion.div className="absolute inset-0 opacity-30" style={{ y: y1, willChange: "transform" }}>
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="hexagons" x="0" y="0" width="100" height="87" patternUnits="userSpaceOnUse">
@@ -86,14 +95,18 @@ export function Hero() {
         </svg>
       </motion.div>
 
-      <motion.div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ y: y2 }}>
-        {[...Array(20)].map((_, i) => (
+      <motion.div
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+        style={{ y: y2, willChange: "transform" }}
+      >
+        {[...Array(isMobile ? 10 : 20)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-[#00d9ff] rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              willChange: "transform, opacity",
             }}
             animate={{
               y: [0, -30, 0],
@@ -108,7 +121,10 @@ export function Hero() {
         ))}
       </motion.div>
 
-      <motion.div className="relative z-10 container mx-auto px-4 text-center" style={{ opacity }}>
+      <motion.div
+        className="relative z-10 container mx-auto px-4 text-center"
+        style={{ opacity, willChange: "opacity" }}
+      >
         <motion.div
           className="max-w-5xl mx-auto space-y-12"
           initial={{ opacity: 0 }}

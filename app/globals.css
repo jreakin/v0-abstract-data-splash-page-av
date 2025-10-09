@@ -142,6 +142,33 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Ensure proper text wrapping on all headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Prevent horizontal overflow on mobile */
+  @media (max-width: 768px) {
+    body {
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
 }
 
 /* Advanced Stark Industries animations and effects */
