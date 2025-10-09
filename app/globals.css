@@ -79,6 +79,43 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
+/* Adding scroll-driven animations support */
+@supports (animation-timeline: scroll()) {
+  .scroll-fade-in {
+    animation: scroll-fade-in linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+
+  .scroll-slide-up {
+    animation: scroll-slide-up linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+}
+
+@keyframes scroll-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes glow-pulse {
   0%,
   100% {
@@ -121,10 +158,10 @@
 
 @keyframes scan-line {
   0% {
-    transform: translateY(-100vh);
+    transform: translateY(-100dvh);
   }
   100% {
-    transform: translateY(200vh);
+    transform: translateY(200dvh);
   }
 }
 
@@ -371,6 +408,19 @@ select {
   word-break: normal !important;
 }
 
+/* Container query support for responsive components */
+@container (min-width: 400px) {
+  .container-responsive {
+    font-size: 1.125rem;
+  }
+}
+
+@container (min-width: 600px) {
+  .container-responsive {
+    font-size: 1.25rem;
+  }
+}
+
 @theme inline {
   /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --color-background: var(--background);
@@ -418,4 +468,13 @@ select {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.full-screen {
+  height: 100dvh;
+  min-height: 100dvh;
+}
+
+.full-screen-width {
+  width: 100dvw;
 }

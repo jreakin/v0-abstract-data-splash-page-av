@@ -51,7 +51,7 @@ export function Hero() {
   const opacity = useTransform(scrollY, [0, 300], [1, isMobile ? 1 : 0])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]">
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]">
       <AnimatedGrid />
 
       <motion.div className="absolute inset-0 opacity-30" style={{ y: y1, willChange: "transform" }}>
@@ -137,9 +137,9 @@ export function Hero() {
           {/* Logo with glow and scan effect */}
           <motion.div
             className="flex justify-center mb-12 relative"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
           >
             <div className="relative animate-float">
               <div className="absolute inset-0 glow-gold rounded-full blur-2xl opacity-50" />

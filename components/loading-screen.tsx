@@ -14,7 +14,7 @@ export function LoadingScreen() {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval)
-          setTimeout(() => setIsLoading(false), 1000)
+          setTimeout(() => setIsLoading(false), 300)
           return 100
         }
         return prev + 2
@@ -28,11 +28,13 @@ export function LoadingScreen() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[9999] bg-[#0a0a0a] flex items-center justify-center"
-          initial={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="fixed inset-0 z-[9999] bg-[#0a0a0a] h-[100dvh] w-[100dvw] overflow-hidden backdrop-blur-xl flex items-center justify-center"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
         >
+          <div className="absolute inset-0 bg-black/95" />
+
           {/* Circuit background */}
           <div className="absolute inset-0 opacity-20">
             <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -55,12 +57,10 @@ export function LoadingScreen() {
                 animate={{
                   strokeDashoffset: 0,
                   pathLength: 1,
-                  opacity: progress === 100 ? [1, 0.3, 1, 0] : 1,
                 }}
                 transition={{
                   duration: 2,
                   ease: "easeInOut",
-                  opacity: progress === 100 ? { duration: 0.8, times: [0, 0.3, 0.6, 1] } : {},
                 }}
               />
               <motion.path
@@ -73,13 +73,11 @@ export function LoadingScreen() {
                 animate={{
                   strokeDashoffset: 0,
                   pathLength: 1,
-                  opacity: progress === 100 ? [1, 0.3, 1, 0] : 1,
                 }}
                 transition={{
                   duration: 2,
                   delay: 0.3,
                   ease: "easeInOut",
-                  opacity: progress === 100 ? { duration: 0.8, times: [0, 0.3, 0.6, 1], delay: 0.1 } : {},
                 }}
               />
               <motion.path
@@ -92,13 +90,11 @@ export function LoadingScreen() {
                 animate={{
                   strokeDashoffset: 0,
                   pathLength: 1,
-                  opacity: progress === 100 ? [1, 0.3, 1, 0] : 1,
                 }}
                 transition={{
                   duration: 2,
                   delay: 0.6,
                   ease: "easeInOut",
-                  opacity: progress === 100 ? { duration: 0.8, times: [0, 0.3, 0.6, 1], delay: 0.2 } : {},
                 }}
               />
             </svg>
@@ -141,12 +137,12 @@ export function LoadingScreen() {
                 animate={
                   progress === 100
                     ? {
-                        opacity: [0.5, 1, 0.5, 0],
-                        scale: [1, 1.2, 1, 1.1],
+                        opacity: [0.5, 1, 0.5],
+                        scale: [1, 1.2, 1],
                       }
                     : {}
                 }
-                transition={progress === 100 ? { duration: 0.8 } : {}}
+                transition={progress === 100 ? { duration: 0.6 } : {}}
               />
               <Image
                 src="/abstract-data-logo.png"
@@ -173,7 +169,7 @@ export function LoadingScreen() {
               </div>
 
               {/* Progress bar */}
-              <div className="w-64 h-2 bg-black/50 rounded-full overflow-hidden border border-[#00d9ff]/30">
+              <div className="w-64 h-2 bg-black/50 rounded-full overflow-hidden border border-[#00d9ff]/30 mx-auto">
                 <motion.div
                   className="h-full bg-gradient-to-r from-[#00d9ff] via-[#d4af37] to-[#00d9ff]"
                   style={{ width: `${progress}%` }}

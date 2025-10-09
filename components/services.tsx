@@ -4,6 +4,7 @@ import { Code2, Database, Brain, Zap, Shield, Gauge, Smartphone, Glasses } from 
 import { motion } from "framer-motion"
 import { TextDecode } from "@/components/text-decode"
 import { ParallaxDepth } from "@/components/parallax-depth"
+import { useState, useEffect } from "react"
 
 const services = [
   {
@@ -89,8 +90,22 @@ const services = [
 ]
 
 export function Services() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
   return (
-    <section className="py-32 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] relative overflow-hidden">
+    <section
+      className="py-32 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] relative overflow-hidden"
+      style={{ containerType: "inline-size" }}
+    >
       <ParallaxDepth variant="geometric" intensity={0.8} />
 
       <div className="absolute inset-0 opacity-10">
@@ -127,28 +142,33 @@ export function Services() {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="glass-morph p-8 rounded-lg relative group hover:scale-105 transition-all duration-300 cursor-pointer"
+              className="glass-morph p-8 rounded-lg relative group hover:scale-105 transition-all duration-300 cursor-pointer container-responsive"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{
-                y: -10,
-                rotateX: service.tiltY,
-                rotateY: service.tiltX,
-                scale: 1.02,
-              }}
+              whileHover={
+                isMobile
+                  ? { scale: 1.02 }
+                  : {
+                      y: -10,
+                      rotateX: service.tiltY,
+                      rotateY: service.tiltX,
+                      scale: 1.02,
+                    }
+              }
               style={{
                 willChange: "transform",
                 perspective: 1000,
-                overflow: "visible", // Allow glow to extend beyond card bounds
+                overflow: "visible",
+                containerType: "inline-size",
               }}
             >
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity rounded-lg blur-2xl"
                 style={{
                   background: `radial-gradient(circle at center, ${service.glowColor}, transparent)`,
-                  transform: "scale(1.2)", // Extend glow beyond card
+                  transform: "scale(1.2)",
                 }}
               />
 
@@ -156,10 +176,8 @@ export function Services() {
                 className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-20 transition-opacity rounded-lg`}
               />
 
-              {/* Holographic shimmer on hover */}
               <div className="absolute inset-0 holographic animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity rounded-lg" />
 
-              {/* Animated circuit connections */}
               <svg
                 className="absolute top-0 right-0 w-32 h-32 opacity-20 group-hover:opacity-40 transition-opacity"
                 viewBox="0 0 100 100"
@@ -183,7 +201,6 @@ export function Services() {
               </svg>
 
               <div className="relative z-10">
-                {/* Icon with hexagonal background */}
                 <div className="flex justify-center mb-6">
                   <div
                     className={`w-20 h-20 hexagon bg-gradient-to-br ${service.gradient} flex items-center justify-center relative`}
@@ -205,7 +222,6 @@ export function Services() {
                 <p className="text-gray-500 text-center leading-relaxed text-xs">{service.details}</p>
               </div>
 
-              {/* Corner accents */}
               <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-[#d4af37] opacity-50" />
               <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-[#d4af37] opacity-50" />
             </motion.div>

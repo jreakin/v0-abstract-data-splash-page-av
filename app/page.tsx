@@ -17,7 +17,7 @@ import { ScanlineEffect } from "@/components/scanline-effect"
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-[100dvh]">
       <CustomCursor />
       <HexagonalOverlay />
       <ScanlineEffect />

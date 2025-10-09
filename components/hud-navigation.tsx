@@ -25,7 +25,6 @@ export function HudNavigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Calculate scroll progress
       const windowHeight = window.innerHeight
       const documentHeight = document.documentElement.scrollHeight - windowHeight
       const scrolled = window.scrollY
@@ -50,7 +49,7 @@ export function HudNavigation() {
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     handleScroll() // Initial check
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
