@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Code2, Database, Smartphone, Cpu, Layers, Glasses, Brain } from "lucide-react"
+import { Code2, Database, Smartphone, Cpu, Layers, Glasses, Brain, Cloud, Activity } from "lucide-react"
 import Image from "next/image"
 import { CodeRain } from "./code-rain"
 
@@ -61,6 +61,22 @@ const technologies = [
     description:
       "Spatial computing and immersive interfaces. ARKit, RealityKit, and Vision Pro development for the future of human-computer interaction. Building for interfaces that don't exist yet—because they will.",
     image: "/images/devops-automation.jpg",
+  },
+  {
+    name: "Snowflake",
+    icon: Cloud,
+    color: "#29b5e8",
+    description:
+      "Cloud data warehousing at planetary scale. Processing petabytes with zero-copy cloning, time travel, and instant elasticity. Enterprise data architecture that makes competitors' solutions look like spreadsheets.",
+    image: "/images/cloud-infrastructure.jpg",
+  },
+  {
+    name: "OpenTelemetry",
+    icon: Activity,
+    color: "#e92063",
+    description:
+      "Industry-standard observability framework. Distributed tracing, metrics, and logs across the entire stack. Real-time insights into system performance that catch issues before users notice them.",
+    image: "/images/database-design.jpg",
   },
 ]
 
