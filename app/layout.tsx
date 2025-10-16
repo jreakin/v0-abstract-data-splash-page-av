@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter, JetBrains_Mono, Orbitron } from "next/font/google"
+import Script from "next/script"
 import "./globals.css" // Import globals.css at the top of the file
 import { ClientLayout } from "@/components/client-layout"
 
@@ -55,6 +56,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth dark">
+      <head>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-BF35363PWL" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BF35363PWL');
+          `}
+        </Script>
+
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "tquuunpm51");
+          `}
+        </Script>
+
+        <Script
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "a36b08034d08488897ab8da3dde8e45b"}'
+          strategy="afterInteractive"
+        />
+      </head>
+
       <body className={`font-sans ${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased`}>
         <ClientLayout>{children}</ClientLayout>
       </body>
