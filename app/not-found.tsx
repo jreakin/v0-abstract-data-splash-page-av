@@ -23,10 +23,12 @@ export default function NotFound() {
 
   const errorVariations = [
     "You've accessed a non-existent endpoint. Our systems are bulletproof—this URL, however, is not.",
-    "This page doesn't exist. Much like your competitors' 'real-time' data processing.",
     "404: The only thing we can't engineer is a page that was never built.",
     "Error: Page not found. Unlike our uptime, which is always found.",
     "This URL leads nowhere. Kind of like Brad's optimization strategies.",
+    "Lost? Our navigation works perfectly. Can't say the same for yours.",
+    "Page missing. Our fault for not building it. Your fault for finding it.",
+    "This endpoint doesn't exist. Much like reasonable timelines from other agencies.",
   ]
   const [errorMessage] = useState(() => errorVariations[Math.floor(Math.random() * errorVariations.length)])
 
