@@ -66,7 +66,6 @@ export default function RootLayout({
             gtag('config', 'G-BF35363PWL', {
               page_path: window.location.pathname,
             });
-            console.log('[v0] Google Analytics initialized');
           `}
         </Script>
 
@@ -77,7 +76,6 @@ export default function RootLayout({
               t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
               y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
             })(window, document, "clarity", "script", "tquuunpm51");
-            console.log('[v0] Microsoft Clarity initialized');
           `}
         </Script>
 
@@ -85,7 +83,6 @@ export default function RootLayout({
           src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "a36b08034d08488897ab8da3dde8e45b"}'
           strategy="beforeInteractive"
-          onLoad={() => console.log("[v0] Cloudflare Analytics loaded")}
         />
       </head>
 
