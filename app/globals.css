@@ -310,6 +310,104 @@
   }
 }
 
+@keyframes glitch-404 {
+  0% {
+    transform: translate(0);
+    text-shadow: 2px 2px 0 #ff00de, -2px -2px 0 #00ffff;
+  }
+  20% {
+    transform: translate(-3px, 3px);
+    text-shadow: 3px 0 0 #ff00de, -3px 0 0 #00ffff;
+  }
+  40% {
+    transform: translate(-3px, -3px);
+    text-shadow: 0 3px 0 #ff00de, 0 -3px 0 #00ffff;
+  }
+  60% {
+    transform: translate(3px, 3px);
+    text-shadow: -3px 0 0 #ff00de, 3px 0 0 #00ffff;
+  }
+  80% {
+    transform: translate(3px, -3px);
+    text-shadow: 0 -3px 0 #ff00de, 0 3px 0 #00ffff;
+  }
+  100% {
+    transform: translate(0);
+    text-shadow: 2px 2px 0 #ff00de, -2px -2px 0 #00ffff;
+  }
+}
+
+@keyframes scanline-move {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes radar-sweep {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(10px, -10px) scale(1.2);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-5px, -20px) scale(0.8);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translate(-10px, -10px) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Adding terminal typing animation */
+@keyframes terminal-cursor {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes terminal-type {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .animate-glow-pulse {
   animation: glow-pulse 2s ease-in-out infinite;
 }
@@ -477,4 +575,91 @@ select {
 
 .full-screen-width {
   width: 100dvw;
+}
+
+.glitch-404 {
+  animation: glitch-404 0.5s infinite;
+  position: relative;
+  color: #00ffff;
+}
+
+.glitch-404::before,
+.glitch-404::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-404::before {
+  animation: glitch-404 0.3s infinite;
+  color: #ff00de;
+  z-index: -1;
+}
+
+.glitch-404::after {
+  animation: glitch-404 0.4s infinite reverse;
+  color: #00ff00;
+  z-index: -2;
+}
+
+.scanline {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.8), transparent);
+  animation: scanline-move 4s linear infinite;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.radar-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin: -50px 0 0 -50px;
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: radar-sweep 3s ease-out infinite;
+}
+
+.particle-404 {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #00ffff;
+  border-radius: 50%;
+  animation: particle-float 5s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+.fade-in-404 {
+  animation: fade-in-up 0.8s ease-out;
+}
+
+.fade-in-stagger-1 {
+  animation: fade-in-up 0.8s ease-out 0.2s both;
+}
+
+.fade-in-stagger-2 {
+  animation: fade-in-up 0.8s ease-out 0.4s both;
+}
+
+.fade-in-stagger-3 {
+  animation: fade-in-up 0.8s ease-out 0.6s both;
+}
+
+.fade-in-stagger-4 {
+  animation: fade-in-up 0.8s ease-out 0.8s both;
+}
+
+.fade-in-stagger-5 {
+  animation: fade-in-up 0.8s ease-out 1s both;
+}
+
+.terminal-line {
+  animation: terminal-type 0.1s steps(1) both;
 }

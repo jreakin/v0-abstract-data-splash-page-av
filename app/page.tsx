@@ -23,37 +23,37 @@ export default function Home() {
       <ScanlineEffect />
       <HudNavigation />
 
-      <div id="hero">
+      <div id="hero" className="scroll-mt-24">
         <Hero />
       </div>
-      <div id="services">
+      <div id="services" className="scroll-mt-24">
         <Services />
       </div>
-      <div id="engineering">
+      <div id="engineering" className="scroll-mt-24">
         <EngineeringExcellence />
       </div>
-      <div id="advantage">
+      <div id="advantage" className="scroll-mt-24">
         <OurAdvantage />
       </div>
-      <div id="results">
+      <div id="results" className="scroll-mt-24">
         <ProvenResults />
       </div>
-      <div id="competition">
+      <div id="competition" className="scroll-mt-24">
         <CompetitionComparison />
       </div>
-      <div id="under-hood">
+      <div id="under-hood" className="scroll-mt-24">
         <UnderTheHood />
       </div>
-      <div id="architecture">
+      <div id="architecture" className="scroll-mt-24">
         <ArchitectureDiagram />
       </div>
-      <div id="self-maintaining">
+      <div id="self-maintaining" className="scroll-mt-24">
         <SelfMaintainingSystems />
       </div>
-      <div id="future">
+      <div id="future" className="scroll-mt-24">
         <TheFuture />
       </div>
-      <div id="tech-stack">
+      <div id="tech-stack" className="scroll-mt-24">
         <TechStack />
       </div>
       <Footer />
