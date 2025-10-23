@@ -4,6 +4,8 @@ import { Inter, JetBrains_Mono, Orbitron } from "next/font/google"
 import Script from "next/script"
 import "./globals.css" // Import globals.css at the top of the file
 import { ClientLayout } from "@/components/client-layout"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -88,6 +90,8 @@ export default function RootLayout({
 
       <body className={`font-sans ${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased`}>
         <ClientLayout>{children}</ClientLayout>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
