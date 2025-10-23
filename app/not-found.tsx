@@ -6,6 +6,8 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useState, useRef } from "react"
 
+export const runtime = "edge"
+
 export default function NotFound() {
   const router = useRouter()
   const [mounted, setMounted] = useState(false)

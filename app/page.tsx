@@ -15,6 +15,8 @@ import { CustomCursor } from "@/components/custom-cursor"
 import { HexagonalOverlay } from "@/components/hexagonal-overlay"
 import { ScanlineEffect } from "@/components/scanline-effect"
 
+export const runtime = "edge"
+
 export default function Home() {
   return (
     <main className="min-h-[100dvh]">

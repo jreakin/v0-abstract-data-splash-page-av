@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import CompetitorsClient from "./competitors-client"
 
+export const runtime = "edge"
+
 export const metadata: Metadata = {
   title: "Competitor Analysis | Abstract Data - Real AI vs Marketing Buzzwords",
   description:
