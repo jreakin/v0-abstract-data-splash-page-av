@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useState, useRef } from "react"
 
-export default function NotFound() {
+export default function Custom404Page() {
   const router = useRouter()
   const [mounted, setMounted] = useState(false)
   const [terminalLines, setTerminalLines] = useState<string[]>([])
@@ -219,24 +219,26 @@ export default function NotFound() {
                   terminalMaximized ? "max-h-[calc(80vh-8rem)]" : "max-h-96"
                 }`}
               >
-                {terminalLines.map((line, i) => (
-                  <div
-                    key={i}
-                    className={`${
-                      line.startsWith("$")
-                        ? "text-[#00f0ff]"
-                        : line.startsWith("ERROR") || line.includes("TIMEOUT")
-                          ? "text-red-400"
-                          : line.startsWith(">")
-                            ? "text-yellow-400"
-                            : line.includes("100%")
-                              ? "text-green-400"
-                              : "text-gray-300"
-                    }`}
-                  >
-                    {line}
-                  </div>
-                ))}
+                {terminalLines
+                  .filter((line) => line !== undefined)
+                  .map((line, i) => (
+                    <div
+                      key={i}
+                      className={`${
+                        line?.startsWith("$")
+                          ? "text-[#00f0ff]"
+                          : line?.startsWith("ERROR") || line?.includes("TIMEOUT")
+                            ? "text-red-400"
+                            : line?.startsWith(">")
+                              ? "text-yellow-400"
+                              : line?.includes("100%")
+                                ? "text-green-400"
+                                : "text-gray-300"
+                      }`}
+                    >
+                      {line}
+                    </div>
+                  ))}
               </div>
 
               {/* Command Input */}
