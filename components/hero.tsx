@@ -1,4 +1,6 @@
 "use client"
+
+import Image from "next/image"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useEffect, useState } from "react"
 import { AnimatedGrid } from "./animated-grid"
@@ -123,7 +125,7 @@ export function Hero() {
       </motion.div>
 
       <motion.div
-        className="relative z-10 container mx-auto px-4 text-center"
+        className="relative z-10 container mx-auto px-4 text-center pb-20 md:pb-12"
         style={{ opacity, willChange: "opacity" }}
       >
         <motion.div
@@ -132,22 +134,47 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
+          {/* Logo with glow and scan effect */}
+          <motion.div
+            className="flex justify-center mb-12 relative"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
+          >
+            <div className="relative animate-float">
+              <div className="absolute inset-0 glow-gold rounded-full blur-2xl opacity-50" />
+              <Image
+                src="/abstract-data-logo.png"
+                alt="Abstract Data"
+                width={300}
+                height={300}
+                className="w-64 h-64 md:w-80 md:h-80 relative z-10 animate-glow-pulse"
+                priority
+              />
+              {/* Scan line effect */}
+              <div className="absolute inset-0 overflow-hidden rounded-full">
+                <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#00d9ff] to-transparent opacity-50 animate-scan-line" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Tagline with cyan glow */}
           <motion.p
-            className="text-3xl md:text-4xl lg:text-5xl font-medium text-glow-cyan tracking-wide"
+            className="text-2xl md:text-3xl font-medium text-glow-cyan tracking-wide"
             style={{ fontFamily: "var(--font-orbitron)" }}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <span className="text-[#00d9ff]">NEXT-GENERATION DATA ENGINEERING</span>
+            <span className="text-[#00d9ff]">NEXT-GENERATION SOFTWARE ENGINEERING</span>
           </motion.p>
 
           {/* Stats HUD */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-8 pb-12 md:pb-0"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
           >
             {[
               { value: 98.5, suffix: "%", label: "PROCESSING TIME REDUCTION" },
