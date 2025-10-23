@@ -10,6 +10,9 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: false,
+  experimental: {
+    runtime: 'edge',
+  },
 }
 
 export default nextConfig
