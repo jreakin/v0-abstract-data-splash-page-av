@@ -1,9 +1,9 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, RefObject } from "react"
 
-export function KonamiCode() {
-  const [showMessage, setShowMessage] = useState(false)
+// <CHANGE> Added useKonamiCode hook export
+export function useKonamiCode(callback: () => void, ref?: RefObject<HTMLElement>) {
   const [keys, setKeys] = useState<string[]>([])
 
   const konamiCode = [
@@ -24,12 +24,10 @@ export function KonamiCode() {
       setKeys((prevKeys) => {
         const newKeys = [...prevKeys, e.key].slice(-10)
 
-        // Check if the last 10 keys match the Konami code
         const matches = konamiCode.every((key, index) => key === newKeys[index])
 
         if (matches) {
-          setShowMessage(true)
-          setTimeout(() => setShowMessage(false), 5000)
+          callback()
           return []
         }
 
@@ -37,9 +35,20 @@ export function KonamiCode() {
       })
     }
 
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [])
+    const element = ref?.current || window
+    element.addEventListener("keydown", handleKeyDown as any)
+    return () => element.removeEventListener("keydown", handleKeyDown as any)
+  }, [callback, ref])
+}
+
+export function KonamiCode() {
+  const [showMessage, setShowMessage] = useState(false)
+
+  // <CHANGE> Using the hook internally
+  useKonamiCode(() => {
+    setShowMessage(true)
+    setTimeout(() => setShowMessage(false), 5000)
+  })
 
   if (!showMessage) return null
 
