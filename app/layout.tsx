@@ -29,7 +29,6 @@ export const metadata: Metadata = {
   title: "Abstract Data | Next-Generation Software Engineering",
   description:
     "Cutting-edge enterprise software systems. Custom development, data engineering, and AI integration. Building tomorrow's solutions today.",
-  generator: "v0.app",
   openGraph: {
     title: "Abstract Data | Next-Generation Software Engineering",
     description:
@@ -49,6 +48,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
